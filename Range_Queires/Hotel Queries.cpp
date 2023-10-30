@@ -2,7 +2,7 @@
  * @file code.cpp
  * @created: 13/3/2022
  */
- 
+
 /**
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
 */
@@ -11,7 +11,7 @@
 #pragma GCC target("avx,avx2,fma")
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 #define ll long long
 #define pb push_back
 #define ah_yeah  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
@@ -24,17 +24,17 @@ using namespace std;
 #define pii pair<int,int>
 #define pll pair<ll,ll>
 #define FOR(i,j,n) for(int i=j;i<n;i++)
- 
+
 //  input
 template <typename T> ostream& operator<<(ostream& s, const vector<T>& self) { for (auto &e : self) { s << e << ' '; } return s; }
 template <typename T> istream& operator>>(istream& s, vector<T>& self) { for (size_t i = 0; i < self.size(); ++i) { s >> self[i]; } return s; }
- 
+
 #ifndef ONLINE_JUDGE
 #define debug(x) cerr << #x << "\n"; _print(x); cerr << endl;
 #else
 #define debug(x)
 #endif
- 
+
 // debugging
 //*********************************************************************
 void _print(pair<int,int>p){cerr<<"["<<p.ff<<","<<p.ss<<"]";}
@@ -46,7 +46,7 @@ template<class T>void _print(vector<T>&v){cerr<<"[ ";for(T i:v){_print(i);cerr<<
 template<class T>void _print(set<T>&pt){cerr<<"[ ";for(T i:pt){_print(i);cerr<<" ";}cerr<<"]\n";}
 template<class T>void _print(multiset<T>&pt){cerr<<"[ ";for(T i:pt){_print(i);cerr<<" ";}cerr<<"]\n";}
 //*********************************************************************
- 
+
 // useful functions....
 //*********************************************************************
 ll gcd(ll a,ll b){if(b==0) return a; else return gcd(b,a%b);}
@@ -57,14 +57,14 @@ ll binmod(ll a,ll b,ll m){a %= m;ll res = 1;while (b > 0) {if (b & 1)res = res *
 // if m is prime
 ll modinv(ll a,ll m){return binmod(a,m-2,m);}
 //*********************************************************************
- 
+
 const ll mod = 1e9+7;
 struct segtree{
     int size;
- 
+
     vector<long long>sums;
     void init(int n){
- 
+
         size = 1;
         //making array size power of 2;
         while(size < n)size*=2;
@@ -85,23 +85,6 @@ struct segtree{
     }
     void build(vector<int>&a){
         build(a,0,0,size);
-    }
-    void set(int i,int v,int x,int lx,int rx){
-        //set the index i with value v
-        if(rx-lx==1){
-            sums[x] = v;
-            return;
-        }
-        int m = (lx+rx)/2;
-        if(i<m){
-            set(i,v,2*x+1,lx,m);
-        }else{
-            set(i,v,2*x+2,m,rx);
-        }
-        sums[x] = max(sums[2*x+1],sums[2*x+2]);
-    }
-    void set(int i,int v){
-        set(i,v,0,0,size);
     }
     long long query(int x,int lx,int rx,int need){
         if(sums[x]<need){
@@ -143,7 +126,7 @@ void solve (int _T){
         
     }
 }
- 
+
 signed main(){
     ah_yeah;
     srand(time(__null));
@@ -159,4 +142,4 @@ signed main(){
         solve(i);
     }
     return 0;
-} 
+}   
